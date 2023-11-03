@@ -1,1 +1,279 @@
+import sqlite3
 
+# Connect to the SQLite database or create it if it doesn't exist
+conn = sqlite3.connect('bus_stops.db')
+
+# Create a cursor to execute SQL commands
+cursor = conn.cursor()
+
+# Create a table to store the data
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS bus_stops (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        stop TEXT
+    )
+''')
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+
+
+
+def insert_bus_stop(name, stop):
+    conn = sqlite3.connect('bus_stops.db')
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO bus_stops (name, stop) VALUES (?, ?)', (name, stop))
+    conn.commit()
+    conn.close()
+
+def get_bus_stop(name):
+    conn = sqlite3.connect('bus_stops.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT stop FROM bus_stops WHERE name = ?', (name,))
+    result = cursor.fetchone()
+    conn.close()
+    if result:
+        return result[0]
+    else:
+        return None
+    
+
+
+# Insert data
+insert_bus_stop('Naman', 'Panchgaon')
+insert_bus_stop('Naina', 'Gwaliar')
+insert_bus_stop('Vaibhav', 'Kukrola')
+insert_bus_stop('Manisha', 'Sehrawan')
+insert_bus_stop('Nitish', 'Nainwal')
+insert_bus_stop('Richard', 'Manesar bus stand')
+insert_bus_stop('Hitesh', 'Sector 2')
+insert_bus_stop('Jatin', 'Sector 81 A')
+insert_bus_stop('Pranav', 'Rampura chhowk')
+insert_bus_stop('Sourabh', 'Ramoura')
+insert_bus_stop('Deepanshu', 'Narsinghpur')
+insert_bus_stop('Ansh', 'Khandsa')
+insert_bus_stop('Priyanshu', 'Shani mandir')
+insert_bus_stop('Shanvi', 'Pace city 1')
+
+
+# Retrieve datas
+Naman_stop = get_bus_stop('Naman')
+Naina_stop = get_bus_stop('Naina')
+Vaibhav_stop = get_bus_stop('Vaibhav')
+Manisha_stop = get_bus_stop('Manisha')
+Nitish_stop = get_bus_stop('Nitishh')
+Richard_stop = get_bus_stop('Richard')
+Hitesh_stop = get_bus_stop('Hitesh')
+Jatin_stop = get_bus_stop('Jatin')
+Pranav_stop = get_bus_stop('Pranav')
+Sourabh_stop = get_bus_stop('Sourabh')
+Deepanshu_stop = get_bus_stop('Deepanshu')
+Ansh_stop = get_bus_stop('Ansh')
+Priyanshu_stop = get_bus_stop('Priyanshu')
+Shanvi_stop = get_bus_stop('Shanvi')
+
+
+
+
+##### Making the bus route
+
+
+
+
+
+
+
+# Define a function to retrieve all bus stops from the database
+def get_all_bus_stops():
+    # Connect to the SQLite database
+    conn = sqlite3.connect('bus_stops.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT stop FROM bus_stops')
+    stops = [row[0] for row in cursor.fetchall()]
+    
+    # Close the database connection
+    conn.close()
+    
+    return stops
+
+# Define a function to find the bus route covering all stops
+def find_bus_route():
+    stops = get_all_bus_stops()
+    visited = [False] * len(stops)
+
+    def dfs(route):
+        if all(visited):
+            return route
+        for i, stop in enumerate(stops):
+            if not visited[i]:
+                visited[i] = True
+                new_route = route + [stop]
+                result = dfs(new_route)
+                visited[i] = False
+                if result:
+                    return result
+        return None
+
+    initial_route = []
+    route = dfs(initial_route)
+    return route
+
+# Find and print the bus route
+bus_route = find_bus_route()
+if bus_route:
+    print("H1 Bus Route that should be follow for 03/11/23:")
+    for i, stop in enumerate(bus_route):
+        print(f"{i + 1}. {stop}")
+        if i == 13:
+            break   
+else:
+    print("No route covers all bus stops.")
+
+
+
+##### Deleting the absented student stops
+
+
+    import sqlite3
+
+# Connect to the SQLite database or create it if it doesn't exist
+conn = sqlite3.connect('bus_stops.db')
+
+# Create a cursor to execute SQL commands
+cursor = conn.cursor()
+
+# Create a table to store the data
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS bus_stops (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        stop TEXT
+    )
+''')
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
+
+
+
+def insert_bus_stop(name, stop):
+    conn = sqlite3.connect('bus_stops.db')
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO bus_stops (name, stop) VALUES (?, ?)', (name, stop))
+    conn.commit()
+    conn.close()
+
+def get_bus_stop(name):
+    conn = sqlite3.connect('bus_stops.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT stop FROM bus_stops WHERE name = ?', (name,))
+    result = cursor.fetchone()
+    conn.close()
+    if result:
+        return result[0]
+    else:
+        return None
+    
+
+
+# Insert data
+insert_bus_stop('Naman', 'Panchgaon')
+insert_bus_stop('Naina', 'Gwaliar')
+insert_bus_stop('Vaibhav', 'Kukrola')
+insert_bus_stop('Manisha', 'Sehrawan')
+insert_bus_stop('Nitish', 'Nainwal')
+insert_bus_stop('Richard', 'Manesar bus stand')
+insert_bus_stop('Hitesh', 'Sector 2')
+insert_bus_stop('Jatin', 'Sector 81 A')
+insert_bus_stop('Pranav', 'Rampura chhowk')
+insert_bus_stop('Sourabh', 'Ramoura')
+insert_bus_stop('Deepanshu', 'Narsinghpur')
+insert_bus_stop('Ansh', 'Khandsa')
+insert_bus_stop('Priyanshu', 'Shani mandir')
+insert_bus_stop('Shanvi', 'Pace city 1')
+
+
+# Retrieve datas
+Naman_stop = get_bus_stop('Naman')
+Naina_stop = get_bus_stop('Naina')
+Vaibhav_stop = get_bus_stop('Vaibhav')
+Manisha_stop = get_bus_stop('Manisha')
+Nitish_stop = get_bus_stop('Nitishh')
+Richard_stop = get_bus_stop('Richard')
+Hitesh_stop = get_bus_stop('Hitesh')
+Jatin_stop = get_bus_stop('Jatin')
+Pranav_stop = get_bus_stop('Pranav')
+Sourabh_stop = get_bus_stop('Sourabh')
+Deepanshu_stop = get_bus_stop('Deepanshu')
+Ansh_stop = get_bus_stop('Ansh')
+Priyanshu_stop = get_bus_stop('Priyanshu')
+Shanvi_stop = get_bus_stop('Shanvi')
+
+
+
+
+##### Making the bus route
+
+
+
+
+
+
+
+# Define a function to retrieve all bus stops from the database
+def get_all_bus_stops():
+    # Connect to the SQLite database
+    conn = sqlite3.connect('bus_stops.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT stop FROM bus_stops')
+    stops = [row[0] for row in cursor.fetchall()]
+    
+    # Close the database connection
+    conn.close()
+    
+    return stops
+
+# Define a function to find the bus route covering all stops
+def find_bus_route():
+    stops = get_all_bus_stops()
+    visited = [False] * len(stops)
+
+    def dfs(route):
+        if all(visited):
+            return route
+        for i, stop in enumerate(stops):
+            if not visited[i]:
+                visited[i] = True
+                new_route = route + [stop]
+                result = dfs(new_route)
+                visited[i] = False
+                if result:
+                    return result
+        return None
+
+    initial_route = []
+    route = dfs(initial_route)
+    return route
+
+# Find and print the bus route
+bus_route = find_bus_route()
+if bus_route:
+    print("H1 Bus Route that should be follow for 03/11/23:")
+    for i, stop in enumerate(bus_route):
+        print(f"{i + 1}. {stop}")
+        if i == 13:
+            break   
+else:
+    print("No route covers all bus stops.")
+
+
+
+##### Deleting the absented student stops
+
+
+    
