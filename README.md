@@ -5,7 +5,7 @@ Our innovative concept revolves around offering offline bus tracking using GSM-G
 
 ## 🌐 Tracking System: A9G GSM GPS + ESP32 + Adafruit API
 
-A cutting-edge bus tracking system that combines hardware and cloud services for real-time monitoring and offline tracking to avoid any problem caused due to fluctuation of internet:
+A bus tracking system that combines hardware and cloud services for real-time monitoring and offline tracking to avoid any problem caused due to fluctuation of internet:
 
 ### Hardware Components:
 
