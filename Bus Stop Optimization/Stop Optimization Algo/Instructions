@@ -1,0 +1,6 @@
+To run the server-side part, you need flask library.
+To run the hardware-side part, use arduino with CDC on boot enabled and flash the code.
+
+In the server file, adjust the IP address to your PC's IP address. And also adjust the server URL for the Hardware code.
+
+Make sure the wifi SSID and password are correct in hardware file. 
