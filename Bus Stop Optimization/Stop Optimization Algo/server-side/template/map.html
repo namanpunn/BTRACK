@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Maps with GPS Point and Route</title>
+  <script src="{{ url_for('static', filename='mapScript.js') }}"></script>
+  <!-- <script src="scripts/mapMarkerbus.js"></script> -->
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=APIKEY_HIDDEN&callback=initMap"></script>
+</head>
+<script>
+  // Define the gpsData variable in the global scope
+  window.gpsData = {{ gps_data|tojson|safe }};
+  // debugging
+  // console.log("GPSDATA: ", gpsData);
+
+  // imagevariable
+  const markerIconUrl = '{{ url_for("static", filename="btrk.png") }}';
+</script>
+<body>
+  <div id="map" style="height: 500px; width: 100%;"></div>
+</body>
+</html>
