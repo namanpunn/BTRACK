@@ -15,7 +15,7 @@ A bus tracking system that combines hardware and cloud services for real-time mo
 
 ### Workflow:
 
-1. 🛰️ **GPS Data Acquisition:**
+1. 🛰️ **GPS Data Acquisition: **
    - A9G gathers GPS coordinates.
    - Sends data to ESP32 through serial communication.
 
